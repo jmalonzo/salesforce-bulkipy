@@ -3,7 +3,7 @@ from tempfile import TemporaryFile
 from collections import namedtuple
 from httplib2 import Http
 
-import bulk_states
+from . import bulk_states
 
 import xml.etree.ElementTree as ET
 import simple_salesforce

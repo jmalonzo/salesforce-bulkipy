@@ -2,7 +2,8 @@ from __future__ import absolute_import
 from tempfile import TemporaryFile
 from collections import namedtuple
 from httplib2 import Http
-from . import bulk_states
+
+import bulk_states
 
 import xml.etree.ElementTree as ET
 import simple_salesforce

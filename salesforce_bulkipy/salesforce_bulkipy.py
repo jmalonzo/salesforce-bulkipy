@@ -15,7 +15,7 @@ except:
     from urllib.parse import urlparse
 
 try:
-    import StringIO
+    from StringIO import StringIO
 except:
     from io import StringIO
 
@@ -171,7 +171,7 @@ class SalesforceBulkipy(object):
         ct = ET.SubElement(root, "contentType")
         ct.text = contentType
 
-        buf = StringIO.StringIO()
+        buf = StringIO()
         tree = ET.ElementTree(root)
         tree.write(buf, encoding="UTF-8")
         return buf.getvalue()
@@ -182,7 +182,7 @@ class SalesforceBulkipy(object):
         state = ET.SubElement(root, "state")
         state.text = "Closed"
 
-        buf = StringIO.StringIO()
+        buf = StringIO()
         tree = ET.ElementTree(root)
         tree.write(buf, encoding="UTF-8")
         return buf.getvalue()
@@ -194,7 +194,7 @@ class SalesforceBulkipy(object):
         state = ET.SubElement(root, "state")
         state.text = "Aborted"
 
-        buf = StringIO.StringIO()
+        buf = StringIO()
         tree = ET.ElementTree(root)
         tree.write(buf, encoding="UTF-8")
         return buf.getvalue()
@@ -221,7 +221,7 @@ class SalesforceBulkipy(object):
         return batch_id
 
     def split_csv(self, csv, batch_size):
-        csv_io = StringIO.StringIO(csv)
+        csv_io = StringIO(csv)
         batches = []
 
         for i, line in enumerate(csv_io):

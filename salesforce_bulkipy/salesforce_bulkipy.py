@@ -6,10 +6,18 @@ from . import bulk_states
 
 import xml.etree.ElementTree as ET
 import simple_salesforce
-import urlparse
 import requests
 
-import StringIO
+try:
+    import urlparse
+except:
+    from urllib.parse import urlparse
+
+try:
+    import StringIO
+except:
+    from io import StringIO
+
 import re
 import time
 import csv

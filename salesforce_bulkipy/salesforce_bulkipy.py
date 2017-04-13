@@ -9,15 +9,18 @@ import xml.etree.ElementTree as ET
 import simple_salesforce
 import requests
 
+is_py3 = False
+
 try:
     import urlparse
 except:
+    is_py3 = True
     from urllib.parse import urlparse
 
 try:
     from StringIO import StringIO
 except:
-    from io import StringIO
+    from io import StringIO, BytesIO
 
 import re
 import time
@@ -171,7 +174,10 @@ class SalesforceBulkipy(object):
         ct = ET.SubElement(root, "contentType")
         ct.text = contentType
 
-        buf = StringIO()
+        if is_py3:
+            buf = BytesIO()
+        else:
+            buf = StringIO()
         tree = ET.ElementTree(root)
         tree.write(buf, encoding="UTF-8")
         return buf.getvalue()
@@ -182,7 +188,10 @@ class SalesforceBulkipy(object):
         state = ET.SubElement(root, "state")
         state.text = "Closed"
 
-        buf = StringIO()
+        if is_py3:
+            buf = BytesIO()
+        else:
+            buf = StringIO()
         tree = ET.ElementTree(root)
         tree.write(buf, encoding="UTF-8")
         return buf.getvalue()
@@ -194,7 +203,10 @@ class SalesforceBulkipy(object):
         state = ET.SubElement(root, "state")
         state.text = "Aborted"
 
-        buf = StringIO()
+        if is_py3:
+            buf = BytesIO()
+        else:
+            buf = StringIO()
         tree = ET.ElementTree(root)
         tree.write(buf, encoding="UTF-8")
         return buf.getvalue()

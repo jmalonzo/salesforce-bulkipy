@@ -85,7 +85,8 @@ class SalesforceBulkipy(object):
     def headers(self, values={}):
         default = {"X-SFDC-Session": self.sessionId,
                    "Content-Type": "application/xml; charset=UTF-8"}
-        for k, val in values.iteritems():
+        items = values.items() if is_py3 else values.iteritems()
+        for k, val in items:
             default[k] = val
         return default
 
